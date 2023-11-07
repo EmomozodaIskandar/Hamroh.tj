@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamroh</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script  src="{% static 'js/home.js'%}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{%url 'home'%}" >
+            <img src="{% static 'img/logo.jpg' %}" alt="" width="50" height="40" class="d-inline-block align-text-top">
+          </a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a href="{%url 'home'%}" class="nav-link"><h4>Acocи</h4></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><h4>Дар бораи мо</h4></a>
+                </li>
+                <li class="d-flex"  id="home-search-navbar-icon-id" style="font-family: 'Times New Roman', Times, serif;">
+                    <a href="#" class="nav-link">
+                        <img src="{% static 'img/search.gif' %}" alt=" " aria-current="page" width="30" height="30" style="margin-top: 10px;"> Search 
+                    </a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="backgroung-image-container" >
+        
+        <picture>
+            <source type="image/jpeg" srcset="{% static 'img/1.svg' %}" 
+            media="(max-width: 799px)">
+            <source type="image/jpeg" srcset="{% static 'img/1.svg' %}" 
+            media="(min-width: 800px)">
+            <img  src="{% static 'img/1.svg' %}" alt="" 
+            height="100%" width="100%" loading="eager" decoding="async" fetchpriority="high">
+        </picture>
+        <div class="top centered">
+            <h1 class="title">Hamroh.Tj</h1>
+        </div>
+        <div class="centered">
+            <form method="post" class="row g-3" action="">{% csrf_token %}
+                
+                <div class="col-auto">
+                    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Аз" name="From">
+                <datalist id="datalistOptions">
+                    <!-- <option value="San Francisco">
+                    <option value="New York">
+                    <option value="Seattle">
+                    <option value="Los Angeles">
+                    <option value="Chicago"> -->
+                        {%for location in locations %}
+                            <option value=" {{ location.LocationName }}"></option>
+                        {% endfor %}
+                </datalist>
+                </div>
+                <div class="col-auto">
+                    
+                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Ба" name="To">
+                </div>
+                <div class="col-auto">
+                    
+                <input class="form-control"  id="exampleDataList" type="date" name="Date">
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control" value="1" name="FreePlaces">
+                </div>
+                <div class="col-auto">
+                    <input class="btn btn-primary" type="submit" value="Ёфтан" >
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>
